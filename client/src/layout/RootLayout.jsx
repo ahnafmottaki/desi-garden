@@ -18,7 +18,7 @@ export default function RootLayout() {
         theme="light"
       />
       <Header />
-      <main className="pt-6 sm:pt-10 lg:pt-13">
+      <main className="pt-18">
         <Outlet />
       </main>
       <Footer />

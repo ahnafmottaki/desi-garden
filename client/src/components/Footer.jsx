@@ -1,7 +1,20 @@
+import { Link } from "react-router";
+import logo from "/logo.png";
+
 export default function Footer() {
   return (
-    <section className="bg-violet-text text-white font-dmsans">
-      <footer className="footer font-inter container sm:footer-horizontal   p-10  mx-auto">
+    <section className="dark:bg-gray-900 bg-indigo-800 text-white font-dmsans">
+      <footer className="footer container sm:footer-horizontal   p-10  mx-auto">
+        <nav>
+          <Link
+            className="text-xl font-bold  sm:text-2xl whitespace-nowrap flex  items-center gap-x-2"
+            to={"/"}
+          >
+            <img src={logo} className="sm:w-6 w-4  rounded-sm " />
+            <span>Desi Garden</span>
+          </Link>
+          <p className="opacity-70  italic">We do the best</p>
+        </nav>
         <nav>
           <h6 className="footer-title">Services</h6>
           <a className="link link-hover">Branding</a>

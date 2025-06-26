@@ -1,5 +1,3 @@
-import { Tooltip } from "react-tooltip";
-
 export default function Tip({
   title,
   category,
@@ -15,13 +13,8 @@ export default function Tip({
         <td>
           <div className="flex items-center gap-3">
             <div className="avatar">
-              <Tooltip id="show-category" className="z-20" />
               <div className="mask mask-squircle h-12 w-12 cursor-pointer">
-                <img
-                  src={image_url}
-                  data-tooltip-id="show-category"
-                  data-tooltip-content={difficultyLevel}
-                />
+                <img src={image_url} />
               </div>
             </div>
           </div>

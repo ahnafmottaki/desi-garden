@@ -31,7 +31,10 @@ export default function ShareATip() {
       .catch((err) => toast(err.message, { type: "error" }));
   };
   return (
-    <section className="bg-mild-violet dark:bg-gray-800 min-h-screen py-20 px-2">
+    <section className="bg-indigo-950 dark:bg-gray-800 min-h-screen py-20 px-2">
+      <h1 className="text-white text-center font-medium text-lg">
+        Share Your Tip
+      </h1>
       <TipAddForm handleTipSubmit={handleTipSubmit} submitString={"Submit"} />
     </section>
   );

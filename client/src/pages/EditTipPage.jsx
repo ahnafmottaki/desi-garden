@@ -39,7 +39,7 @@ export default function EditTipPage() {
   };
 
   return (
-    <section className="bg-mild-violet dark:bg-gray-800 py-30 min-h-screen px-3">
+    <section className="dark:bg-gray-800 bg-indigo-950 py-30 min-h-screen px-3">
       <TipAddForm
         handleTipSubmit={handleTipSubmit}
         tipDetail={tipDetail}

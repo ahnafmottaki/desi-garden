@@ -48,16 +48,16 @@ export default function Header() {
   };
 
   return (
-    <section className=" bg-mild-green font-ancizar fixed top-0 left-0 text-white w-screen z-50 sm:py-2">
+    <section className="dark:bg-gray-900 bg-indigo-800  fixed top-0 left-0 text-white w-screen z-50 ">
       <header className="navbar container justify-between items-center  mx-auto ">
         <div className="flex items-center">
           <Tooltip id="show-user-email" />
           <MobileNav navLinks={navLinks} />
           <Link
-            className="text-xl font-bold font-ancizar sm:text-4xl whitespace-nowrap flex items-center gap-2"
+            className="text-xl font-bold  sm:text-2xl whitespace-nowrap flex items-center gap-2"
             to={"/"}
           >
-            <img src={logo} className="sm:w-10 w-6  rounded-sm " />
+            <img src={logo} className="sm:w-6 w-4  rounded-sm " />
             <span>Desi Garden</span>
           </Link>
         </div>

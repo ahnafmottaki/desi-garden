@@ -6,7 +6,7 @@ export default function CustomLink({ Element = "li", children, ...props }) {
       <NavLink
         {...props}
         className={({ isActive }) =>
-          ` text-2xl font-medium ${isActive ? "link" : ""}`
+          ` text-lg font-medium ${isActive ? "link" : ""}`
         }
       >
         {children}

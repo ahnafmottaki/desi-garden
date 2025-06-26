@@ -8,7 +8,7 @@ import useTitle from "../utils/useTitle";
 export default function Home() {
   useTitle("Desi | Home");
   return (
-    <section className="mt-10">
+    <section className="mt-10  text-white">
       <Welcome />
       <FeaturedGardeners />
       <MySwiper />

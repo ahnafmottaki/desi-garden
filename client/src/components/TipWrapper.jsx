@@ -16,11 +16,6 @@ export default function Wrapper({ tips, isMyTips = false, setTips }) {
       return 0;
     });
   }
-  useEffect(() => {
-    if (!isMyTips) {
-      alert("Hover on the image to show the category ");
-    }
-  }, [isMyTips]);
 
   const handleOnChange = (e) => {
     setSortString(e.target.value);
@@ -67,14 +62,16 @@ export default function Wrapper({ tips, isMyTips = false, setTips }) {
     });
   };
   return (
-    <div>
-      <section className="py-30 min-h-screen mx-auto container px-2">
+    <div className="py-10 ">
+      <h1 className="text-center font-bold text-xl mt-5">
+        Browse All the Tips
+      </h1>
+      <p className="text-center my-1">Here You can find all the tips</p>
+
+      <section className="min-h-screen mx-auto container px-2 flex sm:flex-row flex-col  sm:items-start mt-10 gap-4">
         {!isMyTips && (
-          <div className="text-black dark:text-white flex items-center gap-2 mb-7">
-            <label
-              htmlFor="sortTip"
-              className="font-ancizar font-bold text-xs sm:text-lg"
-            >
+          <div className="text-black dark:text-white shadow shadow-gray-300 dark:shadow-none dark:border-gray-900 border border-transparent  rounded-lg  flex flex-col items-center gap-2 mb-7 p-4 min-h-30 sm:min-h-50">
+            <label htmlFor="sortTip" className=" font-bold text-xs sm:text-lg">
               SortBy Difficulty Level
             </label>
             <select
@@ -90,7 +87,7 @@ export default function Wrapper({ tips, isMyTips = false, setTips }) {
             </select>
           </div>
         )}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto grow border-1 border-transparent shadow dark:shadow-none shadow-gray-300 dark:border-gray-900 p-3">
           <table className="table">
             <thead>
               <tr>
