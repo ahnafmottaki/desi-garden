@@ -6,6 +6,26 @@ import GardenerProfile from "../components/GardenerProfile";
 
 function Helper({ gardeners }) {
   const [sortQuery, setSortQuery] = useState("Show All");
+
+  const handleQueryChange = (e) => {
+    setSortQuery(e.target.value);
+  };
+  console.log(gardeners);
+  console.log(sortQuery);
+  let gardenersModified = gardeners;
+  if (sortQuery === "age")
+    gardenersModified = gardeners.toSorted((grd1, grd2) => grd1.age - grd2.age);
+
+  if (sortQuery === "tips")
+    gardenersModified = gardeners.toSorted(
+      (grd1, grd2) => grd2.sharedTips.total - grd1.sharedTips.total
+    );
+
+  if (sortQuery === "gender")
+    gardenersModified = gardeners.toSorted((grd1, grd2) => {
+      if (grd1.gender === "Male") return -1;
+      if (grd2.gender === "Female") return 1;
+    });
   return (
     <section className="py-10 container mx-auto px-2">
       <h1 className="primary-heading ">Explore Our Gardeners</h1>
@@ -19,18 +39,20 @@ function Helper({ gardeners }) {
             SortBy
           </label>
           <select
+            onChange={handleQueryChange}
             id="sortProfile"
+            defaultValue={sortQuery}
             className="bg-white text-black my-2 px-2 w-full h-8 border dark:border-none rounded-sm max-w-70 "
           >
-            <option value={"no-sorting"}>No Sorting</option>
-            <option value={"easy"}>Easy</option>
-            <option value={"medium"}>Medium</option>
-            <option value={"hard"}>Hard</option>
+            <option value="show-all">show all</option>
+            <option value={"age"}>age</option>
+            <option value={"tips"}>tips</option>
+            <option value={"gender"}>gender</option>
           </select>
         </div>
         <div className="@container">
           <div className="@[594px]:grid-cols-2 grid  @[901px]:grid-cols-3 @[1208px]:grid-cols-4 gap-5">
-            {gardeners.map((gardener) => (
+            {gardenersModified.map((gardener) => (
               <GardenerProfile key={gardener._id} {...gardener} />
             ))}
           </div>

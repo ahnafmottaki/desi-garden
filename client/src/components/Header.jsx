@@ -16,6 +16,7 @@ export default function Header() {
   const navLinks = (
     <>
       <CustomLink to="/">Home</CustomLink>
+      <CustomLink to="/dashboard">DashBoard</CustomLink>
       <CustomLink to="/explore">Explore</CustomLink>
       <CustomLink to="/browseTips">Browse</CustomLink>
       {user && (

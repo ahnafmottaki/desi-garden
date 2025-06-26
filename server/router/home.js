@@ -11,4 +11,6 @@ router.get("/browseTips", homeController.getBrowseTips);
 
 router.get("/explore", homeController.getExploreGardener);
 
+router.get("/alldata", homeController.getAllData);
+
 module.exports = router;

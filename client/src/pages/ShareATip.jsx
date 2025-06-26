@@ -32,8 +32,8 @@ export default function ShareATip() {
   };
   return (
     <section className="bg-indigo-950 dark:bg-gray-800 min-h-screen py-20 px-2">
-      <h1 className="text-white text-center font-medium text-lg">
-        Share Your Tip
+      <h1 className="text-white text-center mb-5 font-bold text-xl">
+        Share Your Garden Tip
       </h1>
       <TipAddForm handleTipSubmit={handleTipSubmit} submitString={"Submit"} />
     </section>

@@ -8,8 +8,8 @@ export default function GardenerProfile({
   status,
 }) {
   return (
-    <div className=" max-sm:max-w-[366px] w-full mx-auto bg-white hover:scale-105 flex flex-col justify-between  dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg py-3 px-5 transition-transform  shadow-gray-300 dark:shadow-base-100">
-      <div className="text-center my-2">
+    <div className=" max-sm:max-w-[366px] w-full mx-auto bg-white hover:scale-105 flex flex-col  dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg py-3 px-5 transition-transform  shadow-gray-300 dark:shadow-base-100">
+      <div className="text-center my-2 grow flex flex-col justify-between ">
         <img
           className="h-25 w-25 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-2 object-cover"
           src={image}
@@ -24,7 +24,7 @@ export default function GardenerProfile({
             ></div>
           </h3>
         </div>
-        <p className="text-lg">{experiences}</p>
+        <p className="text-base">{experiences}</p>
         <p className="primary-para">
           Age: {age} &nbsp; Gender: {gender}
         </p>

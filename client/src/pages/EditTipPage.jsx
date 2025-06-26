@@ -40,6 +40,9 @@ export default function EditTipPage() {
 
   return (
     <section className="dark:bg-gray-800 bg-indigo-950 py-30 min-h-screen px-3">
+      <h1 className="text-white text-center mb-5 font-bold text-xl">
+        Edit Your Garden Tip
+      </h1>
       <TipAddForm
         handleTipSubmit={handleTipSubmit}
         tipDetail={tipDetail}

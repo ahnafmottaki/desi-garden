@@ -16,19 +16,31 @@ export default function Footer() {
           <p className="opacity-70  italic">We do the best</p>
         </nav>
         <nav>
+          <h6 className="footer-title">Go To</h6>
+          <Link className="link link-hover" to={"/"}>
+            Home
+          </Link>
+          <Link className="link link-hover" to={"/explore"}>
+            Explore
+          </Link>
+          <Link className="link link-hover" to={"/browseTips"}>
+            Browse Tips
+          </Link>
+          <Link className="link link-hover" to={"/shareTip"}>
+            Share a Tip
+          </Link>
+          <Link className="link link-hover" to={"/myTips"}>
+            My Tips
+          </Link>
+        </nav>
+        <nav>
           <h6 className="footer-title">Services</h6>
           <a className="link link-hover">Branding</a>
           <a className="link link-hover">Cookie Policy</a>
           <a className="link link-hover">Terms of use</a>
           <a className="link link-hover">Privacy Policy</a>
         </nav>
-        <nav>
-          <h6 className="footer-title">Company</h6>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
-        </nav>
+
         <nav>
           <h6 className="footer-title">Social</h6>
           <div className="grid grid-flow-col gap-4">

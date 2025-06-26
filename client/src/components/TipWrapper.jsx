@@ -64,9 +64,13 @@ export default function Wrapper({ tips, isMyTips = false, setTips }) {
   return (
     <div className="py-10 ">
       <h1 className="text-center font-bold text-xl mt-5">
-        Browse All the Tips
+        {isMyTips ? "Your Shared Tips" : "Browse All the Tips"}
       </h1>
-      <p className="text-center my-1">Here You can find all the tips</p>
+      <p className="text-center my-1">
+        {isMyTips
+          ? "All the tips you shared in one place"
+          : "Here You can find all the tips"}
+      </p>
 
       <section className="min-h-screen mx-auto container px-2 flex sm:flex-row flex-col  sm:items-start mt-10 gap-4">
         {!isMyTips && (

@@ -12,6 +12,10 @@ import MyTips from "../pages/MyTips";
 import EditTipPage from "../pages/EditTipPage";
 import ExplorePage from "../pages/ExplorePage";
 import NotFound from "../pages/NotFound";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import Index from "../pages/Dashboard/children/Index";
+import ViewTips from "../pages/Dashboard/children/ViewTips";
+import Loader from "../components/Loader";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +85,28 @@ const router = createBrowserRouter([
       },
       { path: "login", Component: Login },
       { path: "register", Component: Register },
+    ],
+  },
+  {
+    path: "/dashboard",
+    loader: () =>
+      fetchData(
+        "tipsPromise",
+        "https://desi-gardening.vercel.app/home/browseTips"
+      ),
+    id: "dashboard",
+    hydrateFallbackElement: <Loader />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Index />,
+      },
+      { path: "viewtips", element: <ViewTips /> },
     ],
   },
 ]);
