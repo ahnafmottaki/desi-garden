@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@plugin "daisyui";
+
+@theme {
+  --font-ancizar: "Ancizar Serif", serif;
+  --font-dmsans: "DM Sans", sans-serif;
+  --color-mild-green: #98bc24;
+  --color-mild-violet: #313718;
+  --color-violet-text: #e2ba4b;
+  --color-mild-green-three: rgba(152, 188, 36, 0.4);
+}
+
+html {
+  @apply font-dmsans;
+}
+
+.primary-heading {
+  @apply font-ancizar  text-4xl sm:text-5xl font-bold;
+}
+
+.primary-para {
+  @apply max-w-175 text-lg sm:text-xl mt-3 sm:mt-6 mb-5 sm:mb-8 italic;
+}
+
+.primary-btn {
+  @apply text-3xl font-bold text-white border-2 border-white px-4 py-1 rounded-sm hover:bg-mild-green transition-colors cursor-pointer hover:border-mild-green;
+}
+
+form label {
+  display: block;
+  color: #fff;
+}
+
+.custom-input {
+  @apply bg-white text-black my-2 px-2 w-full h-8 border-none rounded-sm;
+}
+
+.submit-btn {
+  height: 2.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background: #0971f1;
+  cursor: pointer;
+}

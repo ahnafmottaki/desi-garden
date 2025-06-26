@@ -1,0 +1,87 @@
+import { createBrowserRouter } from "react-router";
+import RootLayout from "../layout/RootLayout";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import ShareATip from "../pages/ShareATip";
+import PrivateRoute from "../components/PrivateRoute";
+import BrowseTips from "../pages/BrowseTips";
+import fetchData from "../utils/fetchData/fetchData";
+import TipDetailsPage from "../pages/TipDetailsPage";
+import MyTips from "../pages/MyTips";
+import EditTipPage from "../pages/EditTipPage";
+import ExplorePage from "../pages/ExplorePage";
+import NotFound from "../pages/NotFound";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: RootLayout,
+    errorElement: <NotFound />,
+    children: [
+      { index: true, Component: Home },
+      {
+        path: "shareTip",
+        element: (
+          <PrivateRoute>
+            <ShareATip />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "explore",
+        Component: ExplorePage,
+        loader: () =>
+          fetchData(
+            "exploreGardenerPromise",
+            "https://desi-gardening.vercel.app/home/explore"
+          ),
+      },
+      {
+        path: "editTip/:tipId",
+        element: (
+          <PrivateRoute>
+            <EditTipPage />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            "https://desi-gardening.vercel.app/user/tipDetail/" + params.tipId
+          ),
+      },
+      {
+        path: "browseTips",
+        Component: BrowseTips,
+        loader: () =>
+          fetchData(
+            "tipsPromise",
+            "https://desi-gardening.vercel.app/home/browseTips"
+          ),
+      },
+      {
+        path: "tipDetail/:tipId",
+        element: (
+          <PrivateRoute>
+            <TipDetailsPage />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetchData(
+            "tipPromise",
+            "https://desi-gardening.vercel.app/user/tipDetail/" + params.tipId
+          ),
+      },
+      {
+        path: "myTips",
+        element: (
+          <PrivateRoute>
+            <MyTips />
+          </PrivateRoute>
+        ),
+      },
+      { path: "login", Component: Login },
+      { path: "register", Component: Register },
+    ],
+  },
+]);
+export default router;
