@@ -105,26 +105,30 @@ export default function Wrapper({ tips, isMyTips = false, setTips }) {
               {sortedTips.map((tip) => (
                 <Tip key={tip._id} {...tip}>
                   {isMyTips ? (
-                    <div className="flex flex-wrap gap-3 items-center">
-                      <Link
-                        className="btn btn-secondary"
-                        to={"/editTip/" + tip._id}
-                      >
-                        <RiEdit2Fill />
-                      </Link>
-                      <button
-                        className="btn btn-primary"
-                        onClick={() => handleTipDelete(tip._id)}
-                      >
-                        <MdDelete />
-                      </button>
-                    </div>
+                    <td>
+                      <div className="flex flex-wrap gap-3 items-center">
+                        <Link
+                          className="btn btn-secondary"
+                          to={"/editTip/" + tip._id}
+                        >
+                          <RiEdit2Fill />
+                        </Link>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => handleTipDelete(tip._id)}
+                        >
+                          <MdDelete />
+                        </button>
+                      </div>
+                    </td>
                   ) : (
-                    <Link to={"/tipDetail/" + tip._id}>
-                      <button className="cursor-pointer btn btn-primary">
-                        <FaEye className="text-xl" />
-                      </button>
-                    </Link>
+                    <td>
+                      <Link to={"/tipDetail/" + tip._id}>
+                        <button className="cursor-pointer btn btn-primary">
+                          <FaEye className="text-xl" />
+                        </button>
+                      </Link>
+                    </td>
                   )}
                 </Tip>
               ))}

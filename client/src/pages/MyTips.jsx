@@ -21,7 +21,7 @@ export default function MyTips() {
   if (error) return <p>{error}</p>;
   if (tips.length === 0)
     return (
-      <div className="min-h-screen grid place-items-center text-3xl font-medium">
+      <div className="min-h-screen grid place-items-center text-2xl font-medium">
         <span>No tips created By you </span>
       </div>
     );

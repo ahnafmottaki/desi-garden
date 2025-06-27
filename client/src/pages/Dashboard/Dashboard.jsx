@@ -1,41 +1,49 @@
-import { useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import logo from "/logo.png";
 import {
-  FiBarChart,
   FiChevronDown,
   FiChevronsRight,
-  FiDollarSign,
   FiHome,
   FiMonitor,
   FiShoppingCart,
-  FiTag,
-  FiUsers,
 } from "react-icons/fi";
 import { SiBookstack } from "react-icons/si";
 import { motion } from "motion/react";
-import { Link, Outlet } from "react-router";
+import { Await, Link, Outlet, useLoaderData } from "react-router";
 import useAuthContext from "../../contexts/AuthContext/AuthContext";
+import MyButton from "../../components/MyButton";
+import BreadCrumbs from "../../components/BreadCrumbs";
+import Loader from "../../components/Loader";
 
 const DashBoard = () => {
+  const { allDataPromise } = useLoaderData();
   return (
-    <div className="flex text-black bg-indigo-50">
-      <Sidebar />
-      <ExampleContent />
-    </div>
+    <Suspense fallback={<Loader />}>
+      <Await resolve={allDataPromise}>
+        {(allData) => (
+          <div className="flex" data-theme="light">
+            <Sidebar allData={allData} />
+            <ExampleContent />
+          </div>
+        )}
+      </Await>
+    </Suspense>
   );
 };
 
-const Sidebar = () => {
+const Sidebar = ({ allData }) => {
   const [open, setOpen] = useState(true);
   const [selected, setSelected] = useState("Dashboard");
 
   return (
     <motion.nav
       layout
-      className="sticky top-0 h-screen shrink-0 border-r border-slate-300 bg-white p-2"
-      style={{
-        width: open ? "225px" : "fit-content",
-      }}
+      className={`sticky  text-black top-0  h-screen shrink-0 border-r border-slate-300 bg-white p-2 ${
+        open ? " w-[225px] max-sm:w-[56px]  " : "fit-content"
+      }`}
+      // style={{
+      //   width: open ? "225px" : "fit-content",
+      // }}
     >
       <TitleSection open={open} />
 
@@ -55,42 +63,24 @@ const Sidebar = () => {
           selected={selected}
           setSelected={setSelected}
           open={open}
-          notifs={3}
-        />
-        <Option
-          Icon={FiMonitor}
-          title="View Site"
-          selected={selected}
-          setSelected={setSelected}
-          open={open}
+          notifs={allData.tips_count}
         />
         <Option
           Icon={FiShoppingCart}
-          title="Products"
+          title="My Tips"
+          link={"/dashboard/mygardentips"}
           selected={selected}
           setSelected={setSelected}
           open={open}
         />
         <Option
-          Icon={FiTag}
-          title="Tags"
+          Icon={FiMonitor}
+          title="View Gardeners"
+          link={"/dashboard/gardeners"}
           selected={selected}
           setSelected={setSelected}
           open={open}
-        />
-        <Option
-          Icon={FiBarChart}
-          title="Analytics"
-          selected={selected}
-          setSelected={setSelected}
-          open={open}
-        />
-        <Option
-          Icon={FiUsers}
-          title="Members"
-          selected={selected}
-          setSelected={setSelected}
-          open={open}
+          notifs={allData.gardeners_count}
         />
       </div>
 
@@ -123,7 +113,7 @@ const Option = ({ Icon, title, selected, link, setSelected, open, notifs }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.125 }}
-            className="text-xs font-medium"
+            className="text-xs font-medium max-sm:hidden"
           >
             {title}
           </motion.span>
@@ -138,7 +128,7 @@ const Option = ({ Icon, title, selected, link, setSelected, open, notifs }) => {
             }}
             style={{ y: "-50%" }}
             transition={{ delay: 0.5 }}
-            className="absolute right-2 top-1/2 size-4 rounded bg-indigo-500 text-xs text-white"
+            className="absolute max-sm:hidden right-2 top-1/2 size-4 rounded bg-indigo-500 text-xs text-white"
           >
             {notifs}
           </motion.span>
@@ -151,7 +141,7 @@ const Option = ({ Icon, title, selected, link, setSelected, open, notifs }) => {
 const TitleSection = ({ open }) => {
   const { user } = useAuthContext();
   return (
-    <div className="mb-3 border-b border-slate-300 pb-3">
+    <div className="mb-3  border-b border-slate-300 pb-3">
       <div className="flex cursor-pointer items-center justify-between rounded-md transition-colors hover:bg-slate-100">
         <div className="flex items-center gap-2">
           <Logo />
@@ -161,6 +151,7 @@ const TitleSection = ({ open }) => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.125 }}
+              className="max-sm:hidden"
             >
               <span className="block text-xs font-semibold">Desi Garder</span>
               <span className="block text-xs text-slate-500">
@@ -192,7 +183,7 @@ const ToggleClose = ({ open, setOpen }) => {
     <motion.button
       layout
       onClick={() => setOpen((pv) => !pv)}
-      className="absolute bottom-0 left-0 right-0 border-t border-slate-300 transition-colors hover:bg-slate-100"
+      className="absolute max-sm:hidden bottom-0 left-0 right-0 border-t border-slate-300 transition-colors hover:bg-slate-100"
     >
       <div className="flex items-center p-2">
         <motion.div
@@ -219,10 +210,39 @@ const ToggleClose = ({ open, setOpen }) => {
   );
 };
 
-const ExampleContent = () => (
-  <div className="h-[200vh] w-full">
-    <Outlet />
-  </div>
-);
+const ExampleContent = () => {
+  const { user } = useAuthContext();
+  const headerRef = useRef(null);
+  const [isSticky, setIsSticky] = useState(false);
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.scrollY >= headerRef.current.offsetHeight) {
+        return setIsSticky(true);
+      }
+      setIsSticky(false);
+    };
+  });
+  return (
+    <div className="h-[screen] overflow-auto  w-full pt-[56px] relative">
+      <h1
+        ref={headerRef}
+        className={`${
+          isSticky ? "sticky" : ""
+        } text-right absolute w-full  bg-slate-100 px-4 rounded-sm flex justify-between  items-center py-2  font-medium text-slate-500 top-0 right-0 z-50 `}
+      >
+        <div className="w-10 aspect-square rounded-full overflow-hidden">
+          <img src={user.photoURL} alt={user.displayName} className="" />
+        </div>
+        <Link to="/">
+          <MyButton>Go Back</MyButton>
+        </Link>
+      </h1>
+      <div className="my-5 pl-4">
+        <BreadCrumbs />
+      </div>
+      <Outlet />
+    </div>
+  );
+};
 
 export default DashBoard;

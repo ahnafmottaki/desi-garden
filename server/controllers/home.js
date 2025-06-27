@@ -34,10 +34,10 @@ exports.getAllData = async (req, res) => {
 
   const [
     tips,
-    gardenersCount,
-    maleGardeners,
-    femaleGardeners,
-    activeGardeners,
+    gardeners_count,
+    male_gardeners,
+    female_gardeners,
+    active_gardeners,
   ] = await Promise.all([
     tipsCollection.find({}).toArray(),
     gardenersCollection.countDocuments({}),
@@ -50,25 +50,25 @@ exports.getAllData = async (req, res) => {
     }),
   ]);
 
-  const tipsCount = tips.length;
-  const availableTipsCount = tips.reduce(
+  const tips_count = tips.length;
+  const available_tips_count = tips.reduce(
     (availableCount, tip) =>
       tip.availability === "public" ? availableCount + 1 : availableCount,
     0
   );
 
-  const totalLikes = tips.reduce(
-    (totalLikes, tip) => tip.totalLikes + totalLikes,
+  const total_likes = tips.reduce(
+    (total_likes, tip) => tip.totalLikes + total_likes,
     0
   );
 
   res.send({
-    tipsCount,
-    gardenersCount,
-    maleGardeners,
-    femaleGardeners,
-    availableTipsCount,
-    activeGardeners,
-    totalLikes,
+    tips_count,
+    gardeners_count,
+    male_gardeners,
+    female_gardeners,
+    available_tips_count,
+    active_gardeners,
+    total_likes,
   });
 };

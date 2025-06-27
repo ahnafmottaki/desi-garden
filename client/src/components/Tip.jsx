@@ -3,7 +3,7 @@ export default function Tip({
   category,
   image_url,
   _id,
-  children,
+  children = null,
   difficultyLevel,
 }) {
   return (
@@ -20,7 +20,7 @@ export default function Tip({
           </div>
         </td>
         <td>{category}</td>
-        <td>{children}</td>
+        {children}
       </tr>
     </>
   );

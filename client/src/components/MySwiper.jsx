@@ -1,60 +1,43 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay, Pagination } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
-
+import { Link } from "react-router";
 import SlideContent from "./SlideContent";
+import useFetch from "../hooks/useFetchHook";
+import Slider from "react-slick";
+import Loader from "./Loader";
 
 const MySwiper = () => {
-  return (
-    <Swiper
-      modules={[Navigation, Autoplay, Pagination]}
-      spaceBetween={50}
-      slidesPerView={1}
-      navigation
-      pagination={{ clickable: true }}
-      autoplay={{ delay: 3000, disableOnInteraction: false }}
-      loop={true}
-    >
-      <SwiperSlide>
-        <SlideContent
-          para={`Learn how to turn kitchen waste into rich compost with hands-on
-          guidance from local experts. Perfect for beginners and eco-conscious
-          gardeners.`}
-          location={"Dhaka Botanic Garden, Mirpur"}
-          title={"Community Composting Workshop"}
-          src={
-            "https://images.unsplash.com/photo-1611740192940-0e390d409397?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
-        />
-      </SwiperSlide>
+  const [tips, loading, error] = useFetch(
+    [],
+    "https://desi-gardening.vercel.app/home/featuredTips"
+  );
 
-      <SwiperSlide>
-        <SlideContent
-          para={
-            "A friendly gathering of apartment gardeners to share ideas, show off their setups, and learn low-space planting tips from fellow enthusiasts."
-          }
-          title={"Balcony Gardening Meetup"}
-          location={"Chittagong Urban Gardening Center"}
-          src={
-            "https://images.unsplash.com/photo-1657664058691-2633847111c4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <SlideContent
-          para={
-            "An open event showcasing practical hydroponic systems for home growers, with live demos, Q&A sessions, and free starter kits for attendees."
-          }
-          location={"Rajshahi Agricultural Training Institute"}
-          title={"Hydroponics Demonstration Day"}
-          src={
-            "https://images.unsplash.com/photo-1592863690346-6b28b8effea8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
-        />
-      </SwiperSlide>
-    </Swiper>
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false,
+  };
+  if (loading) return <Loader />;
+  if (error) return <p>{error}</p>;
+  if (tips.length === 0) return <div>No Tips Available Right Now</div>;
+  return (
+    <div className=" container mx-auto   text-gray-900 dark:text-white transition-colors duration-300 lg:px-4 ">
+      {/* <h1 className="primary-heading  mb-10">Top Rated Tips</h1> */}
+      <Slider {...settings}>
+        {tips.slice(0, 3).map((tip) => (
+          <SlideContent
+            key={tip._id}
+            title={tip.title}
+            para={tip.description}
+            src={tip.image_url}
+            id={tip._id}
+          />
+        ))}
+      </Slider>
+    </div>
   );
 };
 
