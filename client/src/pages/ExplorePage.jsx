@@ -10,8 +10,6 @@ function Helper({ gardeners }) {
   const handleQueryChange = (e) => {
     setSortQuery(e.target.value);
   };
-  console.log(gardeners);
-  console.log(sortQuery);
   let gardenersModified = gardeners;
   if (sortQuery === "age")
     gardenersModified = gardeners.toSorted((grd1, grd2) => grd1.age - grd2.age);

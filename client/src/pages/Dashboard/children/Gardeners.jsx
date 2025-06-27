@@ -11,7 +11,6 @@ const Gardeners = () => {
       <Suspense fallback={<Loader />}>
         <Await resolve={gardenersPromise}>
           {(gardeners) => {
-            console.log(gardeners);
             return (
               <div className="overflow-x-auto grow mx-4 border-1 border-transparent shadow dark:shadow-none shadow-gray-300 dark:border-gray-900 p-3">
                 <table className="table">

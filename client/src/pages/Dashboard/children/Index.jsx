@@ -11,7 +11,6 @@ const Index = () => {
     <Suspense fallback={<Loader />}>
       <Await resolve={allDataPromise}>
         {(data) => {
-          console.log(data);
           return (
             <section className="mx-4 @container ">
               <div className="grid grid-cols-1 gap-5 @[518px]:grid-cols-2 @[787px]:grid-cols-3 @[1056px]:grid-cols-4 @[1325px]:grid-cols-5">
