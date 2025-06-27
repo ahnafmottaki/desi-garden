@@ -24,7 +24,6 @@ exports.getBrowseTips = async (req, res) => {
 exports.getExploreGardener = async (req, res) => {
   const gardenersCollection = db.collection("gardeners");
   const gardeners = await gardenersCollection.find().toArray();
-  console.log(gardeners);
   res.send(gardeners);
 };
 
