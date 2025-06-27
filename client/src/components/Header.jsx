@@ -16,13 +16,14 @@ export default function Header() {
   const navLinks = (
     <>
       <CustomLink to="/">Home</CustomLink>
-      <CustomLink to="/dashboard">DashBoard</CustomLink>
+
       <CustomLink to="/explore">Explore</CustomLink>
       <CustomLink to="/browseTips">Browse</CustomLink>
       {user && (
         <>
           <CustomLink to="/shareTip">Share a Tip</CustomLink>
           <CustomLink to={`/myTips`}>My Tips</CustomLink>
+          <CustomLink to="/dashboard">DashBoard</CustomLink>
         </>
       )}
     </>

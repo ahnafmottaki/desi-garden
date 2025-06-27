@@ -212,24 +212,9 @@ const ToggleClose = ({ open, setOpen }) => {
 
 const ExampleContent = () => {
   const { user } = useAuthContext();
-  const headerRef = useRef(null);
-  const [isSticky, setIsSticky] = useState(false);
-  useEffect(() => {
-    window.onscroll = () => {
-      if (window.scrollY >= headerRef.current.offsetHeight) {
-        return setIsSticky(true);
-      }
-      setIsSticky(false);
-    };
-  });
   return (
-    <div className="h-[screen] overflow-auto  w-full pt-[56px] relative">
-      <h1
-        ref={headerRef}
-        className={`${
-          isSticky ? "sticky" : ""
-        } text-right absolute w-full  bg-slate-100 px-4 rounded-sm flex justify-between  items-center py-2  font-medium text-slate-500 top-0 right-0 z-50 `}
-      >
+    <div className="h-[screen] overflow-auto  w-full ">
+      <h1 className=" text-right  w-full  bg-slate-100 px-4 rounded-sm flex justify-between  items-center py-2  font-medium text-slate-500  z-50 ">
         <div className="w-10 aspect-square rounded-full overflow-hidden">
           <img src={user.photoURL} alt={user.displayName} className="" />
         </div>

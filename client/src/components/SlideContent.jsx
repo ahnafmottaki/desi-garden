@@ -9,7 +9,7 @@ export default function SlideContent({
 }) {
   return (
     <main className="flex w-full flex-col-reverse  lg:flex-row-reverse justify-between ">
-      <div className="lg:pl-6 max-sm:h-[300px] pl-8 py-10 lg:py-0 lg:w-1/2 space-y-2 flex flex-col justify-center items-start bg-gray-100 sm:space-y-4 text-center md:text-left md:max-lg:pl-3 border-2 border-gray-400/20 rounded-sm">
+      <div className="lg:pl-6 max-sm:h-[300px] pl-8 py-10 lg:py-0 lg:w-1/2 space-y-2 flex flex-col justify-center items-start bg-gray-100 dark:bg-gray-900 sm:space-y-4 text-center md:text-left md:max-lg:pl-3 border-2 border-gray-400/20 rounded-sm">
         <h2 className="text-3xl  sm:text-4xl lg:text-5xl font-extrabold leading-tight">
           {title}
         </h2>

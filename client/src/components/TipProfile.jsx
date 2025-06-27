@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { toast } from "react-toastify";
 import { AiFillLike } from "react-icons/ai";
-import { JackInTheBox } from "react-awesome-reveal";
+import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router";
 export default function TipProfile({
   _id,
   title,
@@ -27,15 +26,20 @@ export default function TipProfile({
         </div>
         <div className="pt-5 text-base grow flex flex-col justify-end  font-semibold leading-7 ">
           <p className="flex  justify-between">
-            <a href="#" className="text-sky-500 transition-all duration-300">
-              <span> by {username}</span>{" "}
-            </a>
             <span className="flex gap-3 items-center ">
               <span className="text-xl">{totalLikes}</span>
               <span>
                 <AiFillLike className="text-2xl" />
               </span>
             </span>
+            <Link
+              to={"/tipDetail/" + _id}
+              className="text-sky-400 hover:text-sky-900  transition-all duration-300"
+            >
+              <span className="flex items-center gap-1">
+                See More <FaArrowRight />
+              </span>
+            </Link>
           </p>
         </div>
       </div>

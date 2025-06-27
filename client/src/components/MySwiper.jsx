@@ -25,7 +25,6 @@ const MySwiper = () => {
   if (tips.length === 0) return <div>No Tips Available Right Now</div>;
   return (
     <div className=" container mx-auto   text-gray-900 dark:text-white transition-colors duration-300 lg:px-4 ">
-      {/* <h1 className="primary-heading  mb-10">Top Rated Tips</h1> */}
       <Slider {...settings}>
         {tips.slice(0, 3).map((tip) => (
           <SlideContent
