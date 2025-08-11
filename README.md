@@ -1,4 +1,4 @@
-![Desi Garden](desi-garden-image.png)
+![Desi Garden](desi-garden.png)
 
 # 🌿 Garden Tips Hub
 
