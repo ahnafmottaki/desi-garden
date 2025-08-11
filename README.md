@@ -1,3 +1,5 @@
+![Desi Garden](desi-garden-image.png)
+
 # 🌿 Garden Tips Hub
 
 🔗 **Live Site URL**: [https://banana-project-5ac10.web.app/](https://banana-project-5ac10.web.app/)
