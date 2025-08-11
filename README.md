@@ -82,11 +82,6 @@
 
 ---
 
-## 🚫 Not Included
-
-- ❌ Lottie React integration (optional feature not implemented).
-
----
 
 ## 🔧 Tech Stack
 
@@ -98,17 +93,3 @@
 - React Tooltip, React Awesome Reveal
 
 ---
-
-## 📷 Navbar Overview
-
-- Logo on the left
-- Navigation Links: Home | Explore Gardeners | Browse Tips | Share Tip (Private) | My Tips (Private) | Login/Signup
-- User’s Photo shown after login; clicking shows Logout
-- Responsive, mobile-friendly design
-
----
-
-## 📞 Footer Overview
-
-- Includes Contact Info, Terms & Conditions, Social Media Links
-- Matches site's color scheme and font
